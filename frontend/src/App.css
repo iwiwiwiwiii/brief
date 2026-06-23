@@ -1,0 +1,220 @@
+.page-container {
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-card {
+  padding: 40px 30px;
+  max-width: 650px;
+  margin: 40px auto;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.form-subtitle {
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.form-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: var(--bg);
+  color: var(--text-h);
+  font-family: var(--sans);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-select {
+  background-color: var(--bg);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6375' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px;
+  padding-right: 40px;
+}
+
+.error-text {
+  color: #ff4d4f;
+  font-family: var(--mono);
+  font-size: 13px;
+  margin-top: 6px;
+  display: block;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 16px;
+  box-shadow: var(--shadow);
+  transition: filter 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+  filter: brightness(1.1);
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 1024px) {
+  .form-card {
+    padding: 24px 20px;
+    margin: 20px auto;
+  }
+  .form-title {
+    font-size: 28px;
+  }
+}
+.passport-card {
+  border-top: 5px solid #a855f7;
+  text-align: left;
+}
+
+.passport-badge {
+  background: #f3e8ff;
+  color: #6b21a8;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.passport-content {
+  margin-top: 24px;
+}
+
+.passport-section {
+  margin-bottom: 20px;
+}
+
+.passport-section h3 {
+  font-size: 0.95rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.passport-section p {
+  color: #1f2937;
+  line-height: 1.5;
+  background: #f9fafb;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.passport-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stage-tag {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.token-alert {
+  background: #fff7ed;
+  border: 1px dashed #ea580c;
+  padding: 12px;
+  border-radius: 8px;
+  color: #c2410c;
+  margin-top: 24px;
+  font-size: 0.9rem;
+}
+
+.secondary-btn {
+  background: #f3f4f6;
+  color: #4b5563;
+  margin-top: 16px;
+}
+
+.secondary-btn:hover {
+  background: #e5e7eb;
+}
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .page-container {
+    display: block !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  .form-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .submit-btn,
+  .token-alert,
+  .edit-loader-card {
+    display: none !important;
+  }
+  .passport-card {
+    page-break-inside: avoid;
+  }
+}
