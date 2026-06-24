@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -13,11 +13,55 @@ function App() {
     team: '',
     contacts: '',
     links: '',
-    figma_link: ''
+    figmalink: ''
   });
 
   const [errors, setErrors] = useState({});
   const [savedBrief, setSavedBrief] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const checkCurrentUrlForBrief = async () => {
+      const path = window.location.pathname;
+      const match = path.match(/\/api\/briefs\/([a-zA-Z0-9-]+)/);
+      
+      if (match && match[1]) {
+        const shortId = match[1];
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/api/briefs/${shortId}`);
+          if (response.ok) {
+            const data = await response.json();
+            let parsedDesc = {};
+            try {
+              parsedDesc = JSON.parse(data.description);
+            } catch (e) {
+              parsedDesc = { description: data.description };
+            }
+
+            setSavedBrief({
+              title: data.project_name,
+              description: parsedDesc.description || '',
+              problem: parsedDesc.problem || '',
+              solution: parsedDesc.solution || '',
+              stage: parsedDesc.stage || 'idea',
+              goal: parsedDesc.goal || 'поддержка',
+              target_audience: parsedDesc.target_audience || '',
+              team: parsedDesc.team || '',
+              contacts: data.contacts,
+              links: parsedDesc.links || '',
+              figmalink: data.figma_link || '',
+              short_id: data.short_id
+            });
+          }
+        } catch (error) {
+          console.error('Ошибка загрузки брифа:', error);
+        }
+      }
+      setIsLoading(false);
+    };
+
+    checkCurrentUrlForBrief();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +76,6 @@ function App() {
 
   const validateForm = () => {
     const newErrors = {};
-    // Поле problem убрано из обязательных для заполнения
     const requiredFields = [
       'title', 'description', 'solution', 
       'target_audience', 'team', 'contacts'
@@ -76,10 +119,13 @@ function App() {
         });
 
         if (!response.ok) {
-          throw new Error('Ошибка сервера');
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.detail || 'Ошибка сервера');
         }
 
         const data = await response.json();
+        const newPath = `/api/briefs/${data.short_id}`;
+        window.history.pushState({}, '', newPath);
         
         setSavedBrief({ 
           ...formData, 
@@ -89,7 +135,7 @@ function App() {
         
       } catch (error) {
         console.error('Ошибка отправки:', error);
-        alert('Не удалось сохранить брит. Убедитесь, что сервер запущен.');
+        alert(`Не удалось сохранить бриф. Ошибка: ${error.message}`);
       }
     } else {
       alert('Заполните все обязательные поля.');
@@ -97,6 +143,7 @@ function App() {
   };
 
   const handleReset = () => {
+    window.history.pushState({}, '', '/');
     setSavedBrief(null);
     setFormData({
       title: '',
@@ -112,6 +159,10 @@ function App() {
       figmalink: ''
     });
   };
+
+  if (isLoading) {
+    return <div className="page-container"><div className="form-card">Загрузка паспорта проекта...</div></div>;
+  }
 
   if (savedBrief) {
     return (
@@ -192,9 +243,11 @@ function App() {
             </div>
           </div>
 
-          <div className="token-alert">
-            <p><strong>Важно:</strong> Сохраните этот код для изменений: <code>{savedBrief.edit_token}</code></p>
-          </div>
+          {savedBrief.edit_token && (
+            <div className="token-alert">
+              <p><strong>Важно:</strong> Сохраните этот код для изменений: <code>{savedBrief.edit_token}</code></p>
+            </div>
+          )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '15px' }}>
             <button onClick={() => window.print()} className="submit-btn" style={{ background: '#28a745' }}>
@@ -291,7 +344,7 @@ function App() {
           </div>
 
           <button type="submit" className="submit-btn">
-            Сформировать паспорт
+            Сохранить паспорт
           </button>
         </form>
       </div>
