@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/opt/render/project/src/backend')
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
