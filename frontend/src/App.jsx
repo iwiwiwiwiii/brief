@@ -28,7 +28,7 @@ function App() {
       if (match && match[1]) {
         const shortId = match[1];
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/briefs/${shortId}`);
+          const response = await fetch(`https://brief-twts.onrender.com/api/briefs/${shortId}`);
           if (response.ok) {
             const data = await response.json();
             let parsedDesc = {};
@@ -112,7 +112,7 @@ function App() {
           })
         };
 
-        const response = await fetch('http://127.0.0.1:8000/api/briefs', {
+        const response = await fetch('https://brief-twts.onrender.com/api/briefs', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
