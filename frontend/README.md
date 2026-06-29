@@ -37,7 +37,7 @@
 
 ### 1. Запуск бэкенда
 Перейдите в директорию `backend`, установите зависимости и запустите сервер:
-```bash
+``bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
@@ -54,9 +54,26 @@ npm run dev
 
 Приложение откроется в браузере по адресу: http://localhost:5173/
 
-Сборка и деплой
-Клиентская часть: собирается командой npm run build. Статические файлы из папки dist могут быть развернуты на любом сервере (Nginx) или хостинге (Vercel, Netlify).
+##  Тестовые данные (10 примеров заполненных брифов)
 
-Серверная часть: запускается на удаленном сервере через Process Manager (например, PM2 или systemd) с использованием ASGI-сервера Uvicorn / Gunicorn.
+Для демонстрации корректной работы интерфейса, валидации полей и интеграции с порталом spbtech.ru были подготовлены 10 демонстрационных бриф-паспортов стартап-проектов.
 
+Вы можете проверить их отображение по прямым ссылкам на демо-стенде:
+
+1. 📄 [Бриф-паспорт #1 (ЛогВизор)](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/cf54418b)
+2. 📄 [Бриф-паспорт #2](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/cf91f0f2)
+3. 📄 [Бриф-паспорт #3](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/6e05d6ca)
+4. 📄 [Бриф-паспорт #4](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/238768d5)
+5. 📄 [Бриф-паспорт #5](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/6e366b53)
+6. 📄 [Бриф-паспорт #6](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/4e003e2f)
+7. 📄 [Бриф-паспорт #7](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/25d2a8f0)
+8. 📄 [Бриф-паспорт #8](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/93884465)
+9. 📄 [Бриф-паспорт #9](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/74140b69)
+10. 📄 [Бриф-паспорт #10](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app/api/briefs/388fe22a)
+
+## [Запустить демо-версию в браузере](https://brief-udsd-lrqj00169-iwiwiwiwiiis-projects.vercel.app)
+
+## [Ссылка на  макет Figma](https://www.figma.com/design/J2BvLsQmIFVggIx4QpgpYD/Untitled?node-id=0-1&p=f&t=ng9Bb7sOFg0ESOaa-0)
+
+Серверная часть: запускается на удаленном сервере через Process Manager 
 Разработано в рамках производственной практики. Исполнитель: Крашенинникова Л.Д.
